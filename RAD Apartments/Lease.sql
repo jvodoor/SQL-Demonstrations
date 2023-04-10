@@ -28,7 +28,7 @@ WHERE RAD.LEASE.LEASE_BEGIN = '2021-07-01'
 	OR  RAD.APARTMENT.APART_NUM IS NULL 
 ORDER BY RAD.RENTER.RENTER_LNAME, RAD.RENTER.RENTER_FNAME;
 
---2 = Querying Number of people per bedroom in each apartment for leases that end on June 30th, 2023. 
+--2 - Querying Number of people per bedroom in each apartment for leases that end on June 30th, 2023. 
 --    Number of people per bedroom is considered as tenant + dependents / number of bedrooms.
 
 SELECT RAD.RENTER.RENTER_ID, RAD.RENTER.RENTER_LNAME, 
@@ -45,7 +45,7 @@ GROUP BY RAD.RENTER.RENTER_ID, Rad.RENTER.RENTER_LNAME, RAD.APARTMENT.APART_BED
 ORDER BY "PEOPLE / BEDROOM" DESC, RAD.RENTER.RENTER_ID;
 
 
---3 Display apartments that have never been rented to a renter with dependents in only Building's A and C.
+--3 - Display apartments that have never been rented to a renter with dependents in only Building's A and C.
 
 SELECT RAD.APARTMENT.APART_NUM AS "APARTMENT", RAD.APARTMENT.APART_BUILDING AS "BUILDING", RAD.APARTMENT.APART_BED AS "BEDROOMS"
 FROM RAD.APARTMENT
@@ -74,7 +74,7 @@ OR (RAD.LEASE.LEASE_BEGIN = '2021-07-01' AND
 	((RAD.APARTMENT.APART_SQFT > 900 AND RAD.LEASE.LEASE_RENT < 1000) OR (RAD.APARTMENT.APART_SQFT > 1000 AND RAD.LEASE.LEASE_RENT < 1100)))
 ORDER BY RAD.LEASE.LEASE_BEGIN, RAD.APARTMENT.APART_SQFT, RAD.LEASE.LEASE_RENT;
 
---5 Displaying apartment info and the amount for next lase, average rent for all apartments in building, and the difference between the former 2.
+--5 - Displaying apartment info and the amount for next lase, average rent for all apartments in building, and the difference between the former 2.
 -- will only query buildings that have had more htan 3 different apartments that have never been rented. 
 
 SELECT RAD.APARTMENT.APART_BUILDING, RAD.APARTMENT.APART_NUM, RAD.APARTMENT.APART_SQFT, FORMAT(RAD.APARTMENT.APART_RENT, 'C') AS "NEXT LEASE RENT",
